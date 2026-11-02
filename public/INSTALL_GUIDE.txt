@@ -1,0 +1,113 @@
+================================================================================
+MULTITHINKER ULTIMATE PC TOOLKIT (MUPT) - INSTALLATION & DEPLOYMENT GUIDE
+Author: Syed Salman Mehdi | IT Officer | Habib Sugar Mills Ltd, Nawabshah
+Email: salmanmehdi@gmail.com | WhatsApp: 0333-7011728 | LinkedIn: linkedin.com/in/multithinker
+================================================================================
+
+1. ZERO-INSTALLATION PHILOSOPHY
+--------------------------------------------------------------------------------
+MUPT requires NO setup installer, NO MSI package, NO admin rights to copy, and NO
+runtime frameworks (no Python, no Node.js, no .NET compiler, no PowerShell scripts).
+It is a single, self-contained Windows Command Script (.bat) utilizing only built-in
+native Windows binaries present on every factory installation of Windows 10 and 11.
+
+2. SAVING & RUNNING THE TOOLKIT
+--------------------------------------------------------------------------------
+Option A: Run from Local Hard Drive
+  1. Download or copy 'MultiThinker_PC_Toolkit.bat' to any local directory, such as:
+     C:\Tools\MultiThinker_PC_Toolkit.bat
+     or directly on your Desktop / Documents folder.
+  2. To run with standard user privileges (safe diagnostics, speedtests, Wi-Fi checks,
+     Demo Mode):
+     -> Double-click 'MultiThinker_PC_Toolkit.bat'.
+  3. To run with elevated Administrator privileges (for SFC /scannow, DISM repair,
+     Winsock reset, and system temp purge):
+     -> Right-click 'MultiThinker_PC_Toolkit.bat' and select "Run as administrator".
+
+Option B: Deployment via USB Technician Drive (Field IT Support)
+  1. Format a USB drive as FAT32 or NTFS.
+  2. Create a folder named \Support\MUPT\ on the drive.
+  3. Copy both 'MultiThinker_PC_Toolkit.bat' and 'MultiThinker_Tests.bat'.
+  4. Plug the USB into any problem workstation on the manufacturing plant floor
+     or corporate office.
+  5. Launch directly from the USB drive. Reports are always written cleanly to the
+     logged-in user's %USERPROFILE%\Documents\MultiThinker\Reports\ directory,
+     ensuring no write conflicts if the USB drive is read-only or write-protected.
+
+3. RUNNING THE AUTOMATED TEST SUITE (MultiThinker_Tests.bat)
+--------------------------------------------------------------------------------
+Before conducting a live client presentation or deploying to an enterprise fleet:
+  1. Open a Command Prompt or double-click 'MultiThinker_Tests.bat'.
+  2. The automated QA harness will execute 15 Unit Tests and 10 Integration Tests
+     in simulated, non-destructive mode.
+  3. Verify that all 25 test invariants yield [ PASS ] status and exit code 0.
+  4. The generated audit report will be stored in:
+     %USERPROFILE%\Documents\MultiThinker\Reports\Test_Run_<random>.txt
+
+4. ANSI VIRTUAL TERMINAL COLOR CONFIGURATION
+--------------------------------------------------------------------------------
+MUPT uses native Windows Virtual Terminal sequences (ANSI escape codes) for high-
+visibility color coding (Navy, Cyan, Green, Yellow, Red).
+
+- Windows 10 (Version 1607 and later) and Windows 11 enable Virtual Terminal mode
+  natively. MUPT automatically configures VirtualTerminalLevel in the console HKCU
+  registry when initialized.
+- If you run the toolkit on an older Windows 7 or early Windows 10 build where ANSI
+  is unsupported, you can disable ANSI in Menu 13 (Settings -> Option 4).
+  The toolkit will immediately fall back to standard text with zero broken escape characters.
+
+5. PRIVILEGE & PERMISSION MATRIX
+--------------------------------------------------------------------------------
+Function / Module                     Standard User     Administrator Required?
+--------------------------------------------------------------------------------
+Quick Maintenance (DNS, Temp, Ping)       YES           NO (Time sync elevated)
+Network Diagnostics & Pings               YES           NO
+IP Config, Tracert, Nslookup              YES           NO
+Winsock & TCP/IP Protocol Stack Reset      NO           YES (Requires Admin)
+Wi-Fi Signal, Profiles & Status           YES           NO
+Wi-Fi Interface Restart (NIC cycle)        NO           YES (Requires Admin)
+CPU, Memory, Uptime & Performance         YES           NO
+Startup Programs Audit                    YES           NO
+Explorer Shell Restart                    YES           NO
+Safe User Temp File Clean (%TEMP%)        YES           NO
+Windows System Temp Clean (%WINDIR%\Temp)  NO           YES (Requires Admin)
+Empty Recycle Bin                         YES           NO
+System File Checker (sfc /scannow)         NO           YES (Requires Admin)
+DISM Image Health & Repair                 NO           YES (Requires Admin)
+Internet Speedtest & Latency Benchmarks   YES           NO
+Windows Defender Service Audit            YES           NO
+Defender Antivirus Quick Scan             YES           NO (Handled via MpCmdRun)
+Firewall State Inspection                 YES           NO
+Complete System Info Audit                YES           NO
+Interview Demo Mode (Guided Walkthrough)  YES           NO (100% Read-Only)
+Maintenance Reports Generation            YES           NO
+Automated Test Harness (Tests.bat)        YES           NO (Simulated Mode)
+
+6. TROUBLESHOOTING FIELD ISSUES
+--------------------------------------------------------------------------------
+Issue: Workstation username contains spaces (e.g., "C:\Users\John Doe")
+Resolution: MUPT encloses all file system and path operations in double quotes
+            (e.g., "%USERPROFILE%\Documents\MultiThinker"). Fully resilient.
+
+Issue: Machine has no Wi-Fi adapter installed (Desktop connected via Ethernet)
+Resolution: The Wi-Fi manager catches errorlevel 1 from 'netsh wlan show interfaces'
+            and gracefully prints "No wireless adapter active" without crashing.
+
+Issue: Workstation has no Internet access during maintenance
+Resolution: The network connectivity check tests dual public DNS IPs (1.1.1.1 and
+            8.8.8.8) with a 1500ms timeout. If both fail, it logs [WARN]/[FAIL]
+            and proceeds safely with local offline tasks (temp cleanup, disk audit).
+
+Issue: Modern Windows 11 build reports "'wmic' is not recognized"
+Resolution: MUPT has completely eliminated wmic dependencies. CPU models are
+            queried directly from HKLM registry, memory is queried via systeminfo,
+            and OS build is retrieved via native 'ver' and registry keys.
+
+================================================================================
+TECHNICAL SUPPORT & INQUIRIES
+================================================================================
+Syed Salman Mehdi
+IT Officer | Habib Sugar Mills Ltd, Nawabshah
+Email: salmanmehdi@gmail.com | Phone/WhatsApp: 0333-7011728
+LinkedIn: linkedin.com/in/multithinker
+================================================================================

@@ -1,0 +1,6 @@
+{
+  "name": "Multithinker Ultimate PC Toolkit (MUPT)",
+  "description": "Professional Windows maintenance toolkit, automated diagnostic suite, and interactive interview showcase developed by Syed Salman Mehdi for enterprise IT administration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
